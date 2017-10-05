@@ -9,13 +9,14 @@ void setup(){
 }
   
   blocks.add(new GameObject(100,164,block));
+  blocks.add(new GameObject(132,196,block));
   blocks.add(new GameObject(164,68,block));
   blocks.add(new GameObject(164,100,block));
   blocks.add(new GameObject(164,132,block));
   
   test = new Entity(100,50,thing);
-  test.ya = 0.1;
-  test.xs = 1;
+  test.ya = 0.01;
+  test.xs = 0.5;
 }
 
 ArrayList<GameObject> blocks = new ArrayList<GameObject>();
