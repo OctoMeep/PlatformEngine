@@ -14,16 +14,17 @@ void setup(){
   blocks.add(new GameObject(164,100,block));
   blocks.add(new GameObject(164,132,block));
   
-  test = new Person(100,50,thing,1,1);
+  test = new Player(100,50,thing,1,1);
   test.ya = 0.01;
-  test.xs = 0.5;
 }
 
 ArrayList<GameObject> blocks = new ArrayList<GameObject>();
 
+boolean[] pressed = new boolean[256];
+
 PImage block;
 PImage thing;
-Person test;
+Player test;
 
 void draw(){
   background(255);
@@ -34,8 +35,19 @@ void draw(){
   
   test.update();
   test.ya = 0.01;
+  
+  //print(join(str(pressed), ' '));
+  //println(pressed[32]);
 }
 
 void mousePressed(){
-  test.jump();
+  test.anyJump();
+}
+
+void keyPressed(){
+  pressed[keyCode] = true;
+}
+
+void keyReleased(){
+  pressed[keyCode] = false;
 }

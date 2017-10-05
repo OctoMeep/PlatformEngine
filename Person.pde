@@ -18,10 +18,32 @@ class Person extends Entity {
     xs = speed;
   }
 
+  void slowDown() {
+    if (touching[2]) {
+      xs = 0;
+    } else {
+      xs += xs / abs(xs) * (speed / 10);
+    }
+  }
+
   void jump() {
     println("jump");
     if (touching[2]) {
       ys = -jumpSpeed;
+    }
+  }
+
+  void anyJump() {
+    println("any jump");
+    if (touching[0]) {
+      xs = -jumpSpeed;
+    } else if (touching[1]) {
+      xs = jumpSpeed;
+    } else if (touching[2]) {
+      ys = -jumpSpeed;
+    } 
+    if (touching[3]) {
+      ys = jumpSpeed;
     }
   }
 }
