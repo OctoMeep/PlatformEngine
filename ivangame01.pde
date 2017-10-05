@@ -14,7 +14,7 @@ void setup(){
   blocks.add(new GameObject(164,100,block));
   blocks.add(new GameObject(164,132,block));
   
-  test = new Entity(100,50,thing);
+  test = new Person(100,50,thing,1,1);
   test.ya = 0.01;
   test.xs = 0.5;
 }
@@ -23,7 +23,7 @@ ArrayList<GameObject> blocks = new ArrayList<GameObject>();
 
 PImage block;
 PImage thing;
-Entity test;
+Person test;
 
 void draw(){
   background(255);
@@ -33,4 +33,9 @@ void draw(){
   }
   
   test.update();
+  test.ya = 0.01;
+}
+
+void mousePressed(){
+  test.jump();
 }

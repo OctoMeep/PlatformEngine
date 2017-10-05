@@ -6,6 +6,7 @@ class Entity extends GameObject {
   float ya;
 
   boolean collide;
+  boolean[] touching = {false,false,false,false};
 
   Entity(float _x, float _y, PImage _sprite) {
     super(_x, _y, _sprite);
@@ -22,38 +23,44 @@ class Entity extends GameObject {
     ys += ya;
     float tx = x + xs;
     float ty = y + ys;
-
-
-
+    
+    touching[0] = false;
+    touching[1] = false;
+    touching[2] = false;
+    touching[3] = false;
+    
     for (GameObject t : blocks) {
 
-      if (xs != 0 && y + h > t.y && y < t.y + t.h && tx + w > t.x && tx < t.x + t.w) {
-        println("horizontal");
-        xa = 0;
-        xs = 0;
-        if (tx < t.x) {
-          x = t.x - t.w;
-        } else {
-          x = t.x + t.w;
+      if(t.colliding(tx,ty,w,h)){
+        if (x <= t.x && xs > 0) {
+          tx = t.x - t.w;
+          xs = 0;
+          touching[0] = true;
         }
-        return;
-      } else {
-        x = tx;
-      }
-      if (ys != 0 && x + w > t.x && x < t.x + t.w && ty + h > t.y && ty < t.y + t.h) {
-        println(x + w > t.x && x < t.x + t.w);
-        println("vertical");
-        ya = 0;
-        ys = 0;
-        if (ty < t.y) {
-          y = t.y - t.h;
-        } else {
-          y = t.y + t.h;
+        
+        if (x >= t.x && xs < 0) {
+          tx = t.x + t.w;
+          xs = 0;
+          touching[1] = true;
         }
-        return;
-      } else {
-        y = ty;
+        
+        if (y <= t.y && ys > 0) {
+          ty = t.y - t.h;
+          ys = 0;
+          touching[2] = true;
+        }
+        
+        if (y >= t.y && ys < 0) {
+          ty = t.y + t.h;
+          ys = 0;
+          touching[3] = true;
+        }
       }
+      
     }
+    println(touching);
+    x = tx;
+    y = ty;
   }
+  
 }
