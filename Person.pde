@@ -17,6 +17,9 @@ class Person extends Entity {
     if(touching[2]){
       extraJumps = 1;
     }
+    if (y > height) {
+      this.die();
+    }
   }
 
   void goLeft() {
@@ -57,5 +60,12 @@ class Person extends Entity {
     if (touching[3]) {
       ys = jumpSpeed;
     }
+  }
+  
+  void die() {
+    y = 32;
+    x = 32;
+    xs = 0;
+    ys = 0;
   }
 }
