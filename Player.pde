@@ -7,10 +7,6 @@ class Player extends Person {
   void move(){
     println(x + ", " + y);
     
-    if(pressed[32]){
-      jump();
-    }
-    
     int dir = 0;
     dir -= int(pressed[37]);
     dir += int(pressed[39]);
@@ -19,9 +15,21 @@ class Player extends Person {
     } else if (dir == 1){
       goRight();
     } else {
-      //slowDown();
+      slowDown();
     }
     super.move();
     
+  }
+  
+  void jump(){
+    if(touching[0]){
+      xs = -jumpSpeed;
+      ys = -jumpSpeed;
+    } else if(touching[1]){
+      xs = jumpSpeed;
+      ys = -jumpSpeed;
+    } else {
+      super.jump();
+    }
   }
 }

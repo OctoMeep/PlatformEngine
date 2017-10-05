@@ -8,14 +8,15 @@ void setup(){
   thing.pixels[i] = color(0, 0, 255); 
 }
   
-  blocks.add(new GameObject(100,164,block));
-  blocks.add(new GameObject(132,196,block));
-  blocks.add(new GameObject(164,68,block));
-  blocks.add(new GameObject(164,100,block));
-  blocks.add(new GameObject(164,132,block));
+  for(int i = 0; i < 20; i++){
+    blocks.add(new GameObject((float)Math.floor(random(width-32) / 32)*32,(float)Math.floor(random(height-32) / 32)*32,block));
+  }
+  blocks.add(new GameObject(64,64,block));
+  blocks.add(new GameObject(64,96,block));
+  blocks.add(new GameObject(64,128,block));
+  blocks.add(new GameObject(64,160,block));
   
-  test = new Player(100,50,thing,1,1);
-  test.ya = 0.01;
+  test = new Player(100,50,thing,3,4);
 }
 
 ArrayList<GameObject> blocks = new ArrayList<GameObject>();
@@ -34,10 +35,12 @@ void draw(){
   }
   
   test.update();
-  test.ya = 0.01;
+  test.ya = 0.07;
   
   //print(join(str(pressed), ' '));
   //println(pressed[32]);
+  fill(0);
+  text(test.extraJumps,0,24);
 }
 
 void mousePressed(){
@@ -46,6 +49,9 @@ void mousePressed(){
 
 void keyPressed(){
   pressed[keyCode] = true;
+  if (keyCode == 32) {
+    test.jump();
+  }
 }
 
 void keyReleased(){
