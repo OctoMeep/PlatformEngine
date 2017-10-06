@@ -15,6 +15,7 @@ void setup(){
   blocks.add(new GameObject(64,96,block));
   blocks.add(new GameObject(64,128,block));
   blocks.add(new GameObject(64,160,block));
+  blocks.add(new MovingPlat(65,160, block, 1, 64, 64*4, 0, 0));
   
   test = new Player(100,50,thing,3,4);
 }
