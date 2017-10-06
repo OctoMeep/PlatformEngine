@@ -2,7 +2,7 @@ class Person extends Entity {
 
   float speed;
   float jumpSpeed;
-  
+
   int extraJumps;
 
   Person(float _x, float _y, PImage _sprite, float _speed, float _jumpSpeed) {
@@ -11,10 +11,10 @@ class Person extends Entity {
     jumpSpeed = _jumpSpeed;
     extraJumps = 1;
   }
-  
-  void update(){
+
+  void update() {
     super.update();
-    if(touching[2]){
+    if (touching[2]) {
       extraJumps = 1;
     }
     if (y > height) {
@@ -32,17 +32,17 @@ class Person extends Entity {
 
   void slowDown() {
     //if (touching[2]) {
-      xs = 0;
+    xs = 0;
     /*} else {
-      xs += xs / abs(xs) * (speed / 10);
-    }*/
+     xs += xs / abs(xs) * (speed / 10);
+     }*/
   }
 
   void jump() {
     println("jump");
     if (touching[2] || extraJumps > 0) {
       ys = -jumpSpeed;
-      if(!touching[2]){
+      if (!touching[2]) {
         extraJumps--;
       }
     }
@@ -61,11 +61,18 @@ class Person extends Entity {
       ys = jumpSpeed;
     }
   }
-  
+
   void die() {
     y = 32;
     x = 32;
     xs = 0;
     ys = 0;
+  }
+  void next() {
+    y = 32;
+    x = 32;
+    xs = 0;
+    ys = 0;
+    clear = true;
   }
 }
