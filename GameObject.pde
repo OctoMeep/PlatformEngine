@@ -25,4 +25,7 @@ class GameObject {
   boolean colliding(float tx, float ty, float tw, float th){
     return x + w > tx && x < tx + tw && y + h > ty && y < ty + th;
   }
+  
+  void getTouched(Entity t, int side){ //t is the object that touched it, side is what side it is on. 0 = right, 1 = left, 2 = below, 3 = above.
+  }
 }
