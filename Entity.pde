@@ -37,12 +37,14 @@ class Entity extends GameObject {
           ty = t.y - t.h;
           ys = 0;
           touching[2] = true;
+          t.getTouched(this, 3);
         }
         
         if (y > t.y && ys < 0) {
           ty = t.y + t.h;
           ys = 0;
           touching[3] = true;
+          t.getTouched(this, 2);
         }
         
         if(t.colliding(tx,ty,w,h)){
@@ -50,16 +52,19 @@ class Entity extends GameObject {
           tx = t.x - t.w;
           xs = 0;
           touching[0] = true;
+          t.getTouched(this, 1);
         }
         
         if (x > t.x && xs < 0) {
           tx = t.x + t.w;
           xs = 0;
           touching[1] = true;
+          t.getTouched(this, 0);
         }
         }
         
       }
+      
       
     }
     println(touching);
